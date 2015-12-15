@@ -1,5 +1,36 @@
 console.log('Hello World!');
 
+var React = require('react'),
+	ReactDOM = require('react-dom');
+
+var App = React.createClass({
+	getInitialState() {
+		console.log('This is getting the initial state');
+		return {
+			textToDisplay: 'Hello World Again!'
+		};
+	},
+	componentDidMount() {
+		console.log("component did mount");
+		setTimeout(() => {
+			this.setState({ textToDisplay: 'Hello World Again And Again' });
+		}, 2000);
+	},
+	
+	_handleClick() {
+		this.setState({
+			textToDisplay: 'CLICKED'});
+	},
+	render() {
+		return (
+			<h1 onClick={ this._handleClick } className="myname" >{ this.state.textToDisplay } < /h1>
+			);
+	}
+});
+
+ReactDOM.render(<App />, document.getElementById('app'));
+console.log(React);
+
 //////////////////////////////////////
 /// WEBPACK
 //////////////////////////////////////
